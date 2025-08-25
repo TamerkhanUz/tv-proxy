@@ -12,9 +12,8 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "❌ Target server xatolik" });
     }
 
-    // CORS va content-type
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Content-Type", response.headers.get("content-type") || "application/vnd.apple.mpegurl");
+    res.setHeader("Content-Type", response.headers.get("content-type") || "application/octet-stream");
 
     const buffer = await response.arrayBuffer();
     res.send(Buffer.from(buffer));
