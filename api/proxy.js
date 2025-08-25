@@ -7,10 +7,12 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(url);
+
     if (!response.ok) {
       return res.status(500).json({ error: "❌ Target server xatolik" });
     }
 
+    // CORS va content-type
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Content-Type", response.headers.get("content-type") || "application/vnd.apple.mpegurl");
 
@@ -20,3 +22,4 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "❌ Proxy server xatolik", detail: err.message });
   }
 }
+
